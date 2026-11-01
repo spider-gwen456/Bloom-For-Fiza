@@ -1,0 +1,1150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8eeee">
+
+<title>Bloom for Fiza 🌷</title>
+
+<style>
+:root {
+    --burgundy: #a85d76;
+    --light-burgundy: #e7c3ce;
+    --pink: #f5dce3;
+    --green: #718b70;
+    --light-green: #dce8d8;
+    --gold: #c5a34e;
+    --cream: #fffaf3;
+    --dark: #493b3d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 30px;
+}
+
+body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+}
+
+section {
+    padding: 100px 8%;
+}
+
+.gold {
+    color: var(--gold);
+}
+
+/* FLOATING PARTICLES */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    color: var(--gold);
+    opacity: .5;
+    animation: sparkleFloat 6s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: .25;
+    }
+    50% {
+        transform: translateY(-25px) rotate(30deg);
+        opacity: .8;
+    }
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background:
+        radial-gradient(circle at 50% 40%, #f8dfe5, transparent 65%),
+        linear-gradient(145deg, #fffaf3, #f3e4df);
+}
+
+.hero-content {
+    max-width: 750px;
+    animation: fadeUp 1.3s ease both;
+}
+
+.eyebrow {
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 11px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(55px, 10vw, 100px);
+    font-weight: normal;
+    color: var(--burgundy);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 2px 3px 15px rgba(168, 93, 118, .15);
+}
+
+.hero h1 span {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.hero p {
+    color: #776568;
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 0 auto 35px;
+    max-width: 540px;
+}
+
+.gold-line {
+    width: 75px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 25px auto;
+}
+
+.primary-btn {
+    display: inline-block;
+    border: 1px solid var(--burgundy);
+    color: white;
+    background: var(--burgundy);
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .35s;
+}
+
+.primary-btn:hover {
+    background: var(--green);
+    border-color: var(--green);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px #718b7040;
+}
+
+.scroll-note {
+    position: absolute;
+    bottom: 30px;
+    color: var(--green);
+    font-size: 11px;
+    letter-spacing: 3px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* INTRODUCTION */
+
+.intro {
+    text-align: center;
+    background: var(--cream);
+}
+
+.section-tag {
+    color: var(--green);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: 18px;
+}
+
+.section-heading {
+    font-size: clamp(32px, 5vw, 49px);
+    color: var(--burgundy);
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.intro-text {
+    max-width: 680px;
+    margin: auto;
+    color: #776568;
+    font-size: 16px;
+    line-height: 2;
+}
+
+/* FLOWER SECTION */
+
+.flower-section {
+    min-height: 900px;
+    text-align: center;
+    background:
+        radial-gradient(circle at center, #f5e3e5, transparent 65%),
+        #edf2e9;
+    overflow: hidden;
+    position: relative;
+}
+
+.flower-heading {
+    color: var(--burgundy);
+    font-size: clamp(30px, 5vw, 45px);
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.flower-subtitle {
+    color: #71836d;
+    line-height: 1.8;
+}
+
+.flower-area {
+    height: 390px;
+    max-width: 600px;
+    margin: 35px auto 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FLOWER STEM */
+
+.stem {
+    position: absolute;
+    width: 5px;
+    height: 0;
+    background: linear-gradient(to bottom, #8da67b, #54734f);
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: height 1.5s ease 1.1s;
+}
+
+.flower-area.bloomed .stem {
+    height: 190px;
+}
+
+.leaf {
+    position: absolute;
+    width: 45px;
+    height: 23px;
+    background: linear-gradient(135deg, #a4bb91, #58794f);
+    border-radius: 100% 0 100% 0;
+    top: 135px;
+    opacity: 0;
+    transition: opacity 1s ease 2s;
+}
+
+.leaf.left {
+    left: -40px;
+    transform: rotate(20deg);
+}
+
+.leaf.right {
+    right: -40px;
+    transform: scaleX(-1) rotate(20deg);
+}
+
+.flower-area.bloomed .leaf {
+    opacity: 1;
+}
+
+/* PETALS */
+
+.flower-head {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transition: transform 1.5s cubic-bezier(.2, 1.5, .5, 1) .4s;
+}
+
+.flower-area.bloomed .flower-head {
+    transform: translateX(-50%) scale(1);
+}
+
+.petal {
+    position: absolute;
+    width: 55px;
+    height: 85px;
+    left: 62px;
+    top: 5px;
+    transform-origin: 50% 85px;
+    border-radius: 50% 50% 42% 42%;
+    background: linear-gradient(135deg, #f4d3dc, #bb6e87);
+    box-shadow: inset -5px -5px 12px #a85d7620;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg); }
+.petal:nth-child(2) { transform: rotate(45deg); }
+.petal:nth-child(3) { transform: rotate(90deg); }
+.petal:nth-child(4) { transform: rotate(135deg); }
+.petal:nth-child(5) { transform: rotate(180deg); }
+.petal:nth-child(6) { transform: rotate(225deg); }
+.petal:nth-child(7) { transform: rotate(270deg); }
+.petal:nth-child(8) { transform: rotate(315deg); }
+
+.flower-center {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #fff0a9, #c5a34e);
+    border-radius: 50%;
+    top: 73px;
+    left: 70px;
+    box-shadow: 0 0 25px #d5ae4b80;
+}
+
+/* FLOWER COMPLIMENTS */
+
+.compliments {
+    max-width: 850px;
+    margin: 10px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.compliment {
+    padding: 20px;
+    background: #ffffffa8;
+    border: 1px solid #c5a34e55;
+    border-radius: 12px;
+    color: #72535c;
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .7s;
+}
+
+.compliment.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.compliment span {
+    color: var(--gold);
+    font-size: 19px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* LETTER SECTION */
+
+.letter-section {
+    text-align: center;
+    background: #fffaf3;
+    padding: 110px 8%;
+}
+
+.letter-section h2 {
+    color: var(--burgundy);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.letter-section p {
+    color: #847276;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* ENVELOPE */
+
+.envelope {
+    width: 280px;
+    height: 180px;
+    margin: 50px auto 20px;
+    position: relative;
+    background: #b86e85;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 15px 30px #a85d7630;
+    transition: transform .4s;
+}
+
+.envelope:hover {
+    transform: translateY(-8px);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #d69aab;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+    transform-origin: top;
+    transition: transform .7s;
+    z-index: 3;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #c78599;
+    clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+    z-index: 2;
+}
+
+.envelope-letter {
+    position: absolute;
+    width: 85%;
+    height: 145px;
+    background: var(--cream);
+    left: 7.5%;
+    top: 10px;
+    border-radius: 3px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--burgundy);
+    font-style: italic;
+    transition: transform .8s;
+}
+
+.envelope.open .envelope-letter {
+    transform: translateY(-100px);
+}
+
+.seal {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background: var(--gold);
+    color: white;
+    border-radius: 50%;
+    z-index: 4;
+    bottom: 57px;
+    left: calc(50% - 21px);
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+    transition: opacity .4s;
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+.click-note {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--green);
+}
+
+/* LETTER MODAL */
+
+.letter-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #211619c9;
+    z-index: 100;
+    padding: 20px;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.letter-modal.show {
+    display: flex;
+    animation: fadeIn .4s ease;
+}
+
+.letter-paper {
+    width: 100%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 45px 35px;
+    background:
+        linear-gradient(#fffaf3e8, #fffaf3e8),
+        repeating-linear-gradient(
+            transparent 0px,
+            transparent 31px,
+            #d9c8b5 32px
+        );
+    border: 1px solid var(--gold);
+    box-shadow: 0 15px 60px #0005;
+    border-radius: 4px;
+    position: relative;
+    animation: paperIn .6s ease;
+}
+
+.letter-paper h2 {
+    color: var(--burgundy);
+    text-align: center;
+    font-size: 33px;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.letter-paper p {
+    color: #665359;
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 18px;
+}
+
+.letter-paper .signature {
+    color: var(--burgundy);
+    font-style: italic;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.close-btn {
+    position: sticky;
+    top: 0;
+    float: right;
+    border: none;
+    background: var(--burgundy);
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 20px;
+    text-align: center;
+    background: #e8eee3;
+}
+
+footer h2 {
+    color: var(--burgundy);
+    font-weight: normal;
+    font-size: 29px;
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #71836d;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+footer .heart {
+    color: #b65f7b;
+}
+
+/* REVEAL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .9s ease, transform .9s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* KEYFRAMES */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes paperIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 600px) {
+
+    section {
+        padding: 75px 6%;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .flower-section {
+        min-height: 1000px;
+    }
+
+    .compliments {
+        grid-template-columns: 1fr;
+    }
+
+    .flower-area {
+        transform: scale(.85);
+        margin: 15px auto;
+    }
+
+    .letter-paper {
+        padding: 40px 23px;
+    }
+
+    .letter-paper h2 {
+        font-size: 27px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .compliment {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING GOLD PARTICLES -->
+
+<div class="particles" id="particles"></div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">A LITTLE SOMETHING FOR SOMEONE SPECIAL</div>
+
+        <h1>Bloom for <span>Fiza.</span></h1>
+
+        <div class="gold-line"></div>
+
+        <p>
+            Some people enter our lives and somehow make
+            ordinary moments feel extraordinary.
+
+            This little corner of the internet is dedicated
+            to one of those people.
+        </p>
+
+        <a href="#intro" class="primary-btn">
+            Enter Your Little Garden ♡
+        </a>
+
+    </div>
+
+    <div class="scroll-note">SCROLL DOWN ↓</div>
+
+</section>
+
+
+<!-- INTRODUCTION -->
+
+<section class="intro" id="intro">
+
+    <div class="reveal">
+
+        <div class="section-tag">A FRIENDSHIP LIKE NO OTHER</div>
+
+        <h2 class="section-heading">
+            Not Just a Friend. A Sister. ♡
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="intro-text">
+            There are friendships that don't need explanations.
+
+            Where you can laugh at the most ridiculous things,
+            share the most random thoughts, discuss movies for
+            hours, and still never run out of things to say.
+
+            That's what our friendship feels like.
+
+            And honestly, I'm so lucky to have you, Fiza.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FLOWER BLOOM -->
+
+<section class="flower-section" id="flower">
+
+    <div class="reveal">
+
+        <div class="section-tag">A FLOWER JUST FOR YOU</div>
+
+        <h2 class="flower-heading">
+            Because you deserve to bloom. 🌷
+        </h2>
+
+        <p class="flower-subtitle">
+            Keep scrolling. There's a little surprise waiting for you.
+        </p>
+
+    </div>
+
+    <div class="flower-area" id="flowerArea">
+
+        <div class="stem">
+            <div class="leaf left"></div>
+            <div class="leaf right"></div>
+        </div>
+
+        <div class="flower-head">
+
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+
+            <div class="flower-center"></div>
+
+        </div>
+
+    </div>
+
+    <div class="compliments">
+
+        <div class="compliment">
+            <span>✧</span>
+            A genuinely beautiful soul.
+            Your kindness makes people feel comfortable
+            being themselves.
+        </div>
+
+        <div class="compliment">
+            <span>♡</span>
+            The kind of friend who listens without judging
+            and never makes someone feel bad for being themselves.
+        </div>
+
+        <div class="compliment">
+            <span>✿</span>
+            An amazing sense of humour.
+            Somehow even the most random conversations
+            turn into the funniest memories.
+        </div>
+
+        <div class="compliment">
+            <span>✧</span>
+            A mind full of interesting ideas, shared interests
+            and a movie taste that somehow matches mine.
+        </div>
+
+        <div class="compliment">
+            <span>♡</span>
+            Someone who makes ordinary days feel special
+            just by being part of them.
+        </div>
+
+        <div class="compliment">
+            <span>✿</span>
+            A friend who feels like family.
+            And that's a kind of blessing worth appreciating.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section class="letter-section" id="letter">
+
+    <div class="reveal">
+
+        <div class="section-tag">SOMETHING FROM THE HEART</div>
+
+        <h2>A Little Letter For You.</h2>
+
+        <div class="gold-line"></div>
+
+        <p>
+            Some things are easier to write than to say.
+            So I wrote you a little something.
+        </p>
+
+    </div>
+
+    <div class="envelope" id="envelope"
+         role="button" tabindex="0"
+         aria-label="Open your letter">
+
+        <div class="envelope-letter">
+            For Fiza, with love ♡
+        </div>
+
+        <div class="seal">♡</div>
+
+    </div>
+
+    <div class="click-note">CLICK THE ENVELOPE TO OPEN YOUR LETTER</div>
+
+</section>
+
+
+<!-- LETTER MODAL -->
+
+<div class="letter-modal" id="letterModal"
+     role="dialog" aria-modal="true"
+     aria-labelledby="letterTitle">
+
+    <div class="letter-paper">
+
+        <button class="close-btn" id="closeLetter"
+                aria-label="Close letter">✕</button>
+
+        <h2 id="letterTitle">Dear Fiza, ♡</h2>
+
+        <div class="gold-line"></div>
+
+        <p>
+            I don't think I tell you enough how much I appreciate
+            having you in my life.
+        </p>
+
+        <p>
+            You're genuinely one of the best people I've ever
+            had the chance to know. Sometimes I wonder how two
+            people can have such similar humour, interests,
+            ideas and even movie tastes. It's honestly hilarious
+            how our minds work in almost the same way.
+        </p>
+
+        <p>
+            One of the things I appreciate most about you is
+            how comfortable I feel talking to you. I can say
+            the most random things, make the weirdest jokes,
+            share my thoughts, and just be myself without
+            worrying that you'll misunderstand me or take
+            everything the wrong way.
+        </p>
+
+        <p>
+            You never make me feel like I have to pretend
+            to be someone else. You listen, you understand,
+            and you make conversations feel effortless.
+            That means more to me than you probably realise.
+        </p>
+
+        <p>
+            You're not just a best friend to me.
+            You're like a sister I got to choose.
+            And I genuinely hope you know how special
+            that makes you.
+        </p>
+
+        <p>
+            I hope life gives you countless reasons to smile.
+            I hope you achieve all those things you dream about,
+            meet people who appreciate your beautiful heart,
+            and never forget how much you deserve happiness.
+        </p>
+
+        <p>
+            And please, never lose that funny, slightly
+            chaotic personality of yours. Our conversations
+            would be significantly less entertaining without it.
+            😂
+        </p>
+
+        <p>
+            Thank you for being you, Fiza.
+            Thank you for being such a wonderful friend.
+            And thank you for making this friendship
+            feel so effortless and special.
+        </p>
+
+        <p>
+            No matter how busy life gets, I hope we always
+            find time for our ridiculous conversations,
+            shared interests, movie discussions and
+            endless laughter.
+        </p>
+
+        <p class="signature">
+            With lots of love,<br>
+            Your forever friend. ♡
+        </p>
+
+        <div class="gold-line"></div>
+
+        <p style="text-align:center; font-size:13px;">
+            You are appreciated more than words can explain. 🌷
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>Keep Blooming, Fiza. 🌷</h2>
+
+    <p>
+        The world is a little more beautiful with you in it.<br>
+        Made with <span class="heart">♥</span> and a whole lot of appreciation.
+    </p>
+
+    <div class="gold-line"></div>
+
+    <p>© <span id="year"></span> A Little Garden For Fiza.</p>
+
+</footer>
+
+
+<script>
+
+// FLOATING GOLD PARTICLES
+
+const particleContainer = document.getElementById("particles");
+
+for (let i = 0; i < 18; i++) {
+
+    const particle = document.createElement("span");
+
+    particle.className = "sparkle";
+    particle.textContent = "✧";
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = Math.random() * 100 + "%";
+    particle.style.fontSize = (10 + Math.random() * 15) + "px";
+    particle.style.animationDelay = Math.random() * 5 + "s";
+    particle.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+    particleContainer.appendChild(particle);
+
+}
+
+
+// SCROLL REVEAL
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.12
+    });
+
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
+
+} else {
+
+    revealElements.forEach(element => {
+        element.classList.add("visible");
+    });
+
+}
+
+
+// FLOWER BLOOM ON SCROLL
+
+const flowerArea = document.getElementById("flowerArea");
+const compliments = document.querySelectorAll(".compliment");
+
+if ("IntersectionObserver" in window) {
+
+    const flowerObserver = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                flowerArea.classList.add("bloomed");
+
+                compliments.forEach((item, index) => {
+
+                    setTimeout(() => {
+                        item.classList.add("show");
+                    }, 1200 + index * 250);
+
+                });
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.25
+    });
+
+    flowerObserver.observe(flowerArea);
+
+} else {
+
+    flowerArea.classList.add("bloomed");
+
+    compliments.forEach(item => item.classList.add("show"));
+
+}
+
+
+// OPEN LETTER
+
+const envelope = document.getElementById("envelope");
+const letterModal = document.getElementById("letterModal");
+const closeLetter = document.getElementById("closeLetter");
+
+function openLetter() {
+
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+        letterModal.classList.add("show");
+        closeLetter.focus();
+    }, 500);
+
+}
+
+function closeLetterModal() {
+
+    letterModal.classList.remove("show");
+    envelope.classList.remove("open");
+
+    envelope.focus();
+
+}
+
+envelope.addEventListener("click", openLetter);
+
+envelope.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter" || event.key === " ") {
+
+        event.preventDefault();
+        openLetter();
+
+    }
+
+});
+
+closeLetter.addEventListener("click", closeLetterModal);
+
+
+// CLOSE LETTER BY CLICKING OUTSIDE
+
+letterModal.addEventListener("click", function(event) {
+
+    if (event.target === letterModal) {
+        closeLetterModal();
+    }
+
+});
+
+
+// CLOSE LETTER WITH ESCAPE
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape" && letterModal.classList.contains("show")) {
+        closeLetterModal();
+    }
+
+});
+
+
+// AUTOMATIC YEAR
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
